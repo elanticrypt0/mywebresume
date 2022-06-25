@@ -27,12 +27,12 @@ class ControllerClass{
         $this->loadModel();
     }
 
-    function loadModel(){
+    function loadModel($debug=false){
         // si el controlador tiene un modelo entonces lo trae e instancia.
         $model=$this->controller."Model";
         if(file_exists(APP_MODEL_FOLDER.$model.".php")){
             require_once(APP_MODEL_FOLDER.lcfirst($model).".php");
-            $this->model=new $model();
+            $this->model=new $model($debug);
         }else{
             $this->model=false;
         }
