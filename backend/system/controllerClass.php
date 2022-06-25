@@ -4,6 +4,7 @@
 class ControllerClass{
 
     public $controller='';
+    public $method='';
     public $model='';
     public $viewFolder='view/';
     public $viewFile='';
@@ -22,19 +23,23 @@ class ControllerClass{
 
     function __construct(){
         $this->controller=ControllerClass::readURL_ctrl();
-        var_dump($this->controller);
+        $this->method=ControllerClass::readURL_mtd();
+        $this->loadModel();
+    }
+
+    function loadModel(){
         // si el controlador tiene un modelo entonces lo trae e instancia.
         $model=$this->controller."Model";
         if(file_exists(APP_MODEL_FOLDER.$model.".php")){
-            require_once(APP_MODEL_FOLDER.$model.".php");
-            var_dump($this->controller."Model");
-            $this->model=new $this->controller."Model"();
+            require_once(APP_MODEL_FOLDER.lcfirst($model).".php");
+            $this->model=new $model();
         }else{
             $this->model=false;
         }
+        return $this->model;
     }
 
-    function getView($viewFile,$params='',$layout=true){
+    function getView($viewFile,$data='',$layout=true){
         $viewFile=APP_VIEW_FOLDER.$this->controller."/".$viewFile;
         if(file_exists($viewFile)){
             $this->viewFile=$viewFile;
@@ -59,26 +64,15 @@ class ControllerClass{
     }
 
     // render
-    public function render($layout,$view){
+    public function render($layout,$view,$data=null){
         $this->renderLayaout($layout);
-        $this->getView($view);
+        $this->getView($view,$data);
     }
 
-
-
-    function page_index(){
-
+    // redirect
+    public function redirect($url){
+        header("Location: ".$url, TRUE, 301);
     }
-    function page_create(){
-
-    }
-    function page_update(){
-
-    }
-    function page_delete(){
-
-    }
-
 
 }
 

@@ -29,7 +29,10 @@ class DatabaseClass{
             return true;
         }
         if($response=$this->dbConn->query($query)){
-            return is_object($response)? $response->fetch_assoc() : true;
+            // si tiene un solo elemento entonces lo devuelvo con un fetch.
+            if(is_object($response)){
+                return ($response->num_rows > 1) ? $response: $response->fetch_assoc();
+            }
         }else{
             echo 'error!';
             return false;

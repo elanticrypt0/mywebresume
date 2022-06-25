@@ -22,7 +22,7 @@ class ModelClass{
         return "".implode(",",$arrayIn)."";
     }
 
-    // combierte un array a string para un SQL query UPDATE
+    // combierte un array a string para un SQL query para UPDATE
     public function array2StringByPairs($arrayIn){
         $stringOut='';
         $arrayLength=count($arrayIn);
@@ -52,7 +52,7 @@ class ModelClass{
         return $this->dbConn->executeQuery($query);
     }
 
-    public function update($toUpdate){
+    public function update($id,$toUpdate){
         $query="UPDATE ".$this->table." SET ".$this->array2StringByPairs($toUpdate)." WHERE id=".$toUpdate['id']." LIMIT 1";
         return $this->dbConn->executeQuery($query);
         
