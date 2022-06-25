@@ -8,6 +8,7 @@ define("DATABASE",array(
     "port"=>""
 ));
 
+define('APP_SYSTEM_FOLDER',"system/");
 define('APP_MODEL_FOLDER',"models/");
 define('APP_VIEW_FOLDER',"views/");
 define('APP_CONTROLLER_FOLDER',"controllers/");

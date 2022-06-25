@@ -1,9 +1,9 @@
 <?php
 
 require_once('config.php');
-require_once('db-class.php');
-require_once(APP_MODEL_FOLDER.'modelClass.php');
-require_once(APP_CONTROLLER_FOLDER.'ControllerClass.php');
+require_once(APP_SYSTEM_FOLDER.'db-class.php');
+require_once(APP_SYSTEM_FOLDER.'modelClass.php');
+require_once(APP_SYSTEM_FOLDER.'ControllerClass.php');
 
 
 // current page es el nombre delcontrolador que estoy manejando.
